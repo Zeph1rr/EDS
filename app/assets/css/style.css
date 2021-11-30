@@ -1,0 +1,19 @@
+body{
+    font-family: Montserrat, monospace;
+    background-color: #edeef3;
+}
+
+.btn-dark{
+    background-color: #2c45a9;
+}
+
+
+.btn-outline-light:hover{
+    background: #3045b0;
+    border-color: #658ed0;
+    color: white;
+}
+
+.btn-primary{
+    background-color: #5571ee;
+}
