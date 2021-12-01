@@ -26,7 +26,11 @@ $fields = ['Фамилия и имя', 'Всего', 'На согласован�
 
 $reporting = [$fields];
 
-includeTemplate('authorized.php', ['title' => $title, 'pos_id' => $user->pos_id]);
+if ($user->pos_id != 1) {
+  includeTemplate('authorized.php', ['title' => $title, 'pos_id' => $user->pos_id]);
+} else {
+  includeTemplate('admin.php', ['title' => $title, 'pos_id' => $user->pos_id]);
+}
 ?>
 
 <main class="mt-5 pt-3">

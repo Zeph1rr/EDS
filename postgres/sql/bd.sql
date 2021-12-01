@@ -86,9 +86,10 @@ INSERT INTO positions (name) VALUES ('Директор');
 INSERT INTO positions (name) VALUES ('Начальник');
 INSERT INTO positions (name) VALUES ('Сотрудник');
 
+INSERT INTO departments (name) VALUES ('Администрация');
 INSERT INTO departments (name) VALUES ('Бухгалтерия');
 INSERT INTO departments (name) VALUES ('IT-отдел');
-INSERT INTO departments (name) VALUES ('Администрация');
+
 
 INSERT INTO statuses (status) VALUES ('На согласовании'), ('Согласовано'), ('Отказано');
 
@@ -100,12 +101,12 @@ INSERT INTO users (last_name, first_name, age) VALUES ('Алибабаев', 'А
 INSERT INTO users (last_name, first_name, age) VALUES ('Никонова', 'Анастасия', 20);
 INSERT INTO users (last_name, first_name, age) VALUES ('Иванов', 'Иван', 54);
 
-INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('agrigoryev', '$2y$08$ftiOsKbAtTUTWsJhuWN9Xu/RHpjNZiiNKIq.8vgKDYDMaXZN78XxO', 1, 2, NULL);
-INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('yoleg', '$2y$08$HmeN0epFlG4DUmNGyrGmjOetDtKdARJiloUmHLPBvp33kVWF2BB8q', 3, 2, NULL);
-INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('vkulakov', '$2y$08$xKacTHSk0YRGAtFxhlGlMeFbJl.gWmHCEmsKiasQPvsyu5KoR6Y/W', 4, 2, NULL);
-INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('aalibabaev', '$2y$08$Gfo1fW98Zf3pi5knjj5A5ucOqu5KgDfa2gaaoHY.bmiTogopGuEgm', 4, 1, NULL);
-INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('anikonova', '$2y$08$RPFmMrRF1IwlQe9zvS063.aevTVs9PjrwSb3gFWMo5WPISzYFMqDO', 3, 1, NULL);
-INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('iivanov', '$2y$08$ftiOsKbAtTUTWsJhuWN9Xu/RHpjNZiiNKIq.8vgKDYDMaXZN78XxO', 2, 3, NULL)
+INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('agrigoryev', '$2y$08$ftiOsKbAtTUTWsJhuWN9Xu/RHpjNZiiNKIq.8vgKDYDMaXZN78XxO', 1, 3, NULL);
+INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('yoleg', '$2y$08$HmeN0epFlG4DUmNGyrGmjOetDtKdARJiloUmHLPBvp33kVWF2BB8q', 3, 3, NULL);
+INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('vkulakov', '$2y$08$xKacTHSk0YRGAtFxhlGlMeFbJl.gWmHCEmsKiasQPvsyu5KoR6Y/W', 4, 3, NULL);
+INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('aalibabaev', '$2y$08$Gfo1fW98Zf3pi5knjj5A5ucOqu5KgDfa2gaaoHY.bmiTogopGuEgm', 4, 2, NULL);
+INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('anikonova', '$2y$08$RPFmMrRF1IwlQe9zvS063.aevTVs9PjrwSb3gFWMo5WPISzYFMqDO', 3, 2, NULL);
+INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('iivanov', '$2y$08$ftiOsKbAtTUTWsJhuWN9Xu/RHpjNZiiNKIq.8vgKDYDMaXZN78XxO', 2, 1, NULL);
 
 
 -- FUNCTIONS SECTION
@@ -121,4 +122,18 @@ AS $$
     inner join users on users.id = documents.owner
     where owner = empl
 $$
-LANGUAGE SQL
+LANGUAGE SQL;
+
+CREATE OR REPLACE FUNCTION department(number INT)
+RETURNS TABLE (name TEXT, count INT, head TEXT)
+AS $$
+SELECT name,
+    (select count(*) from login_data where department_id = number) as count, 
+    (select last_name || ' ' || first_name from users 
+     inner join login_data on login_data.id = users.id
+     inner join departments on login_data.department_id = departments.id 
+     where department_id = number AND pos_id = 3) as head
+    from departments
+    where id = number
+$$
+LANGUAGE SQL;

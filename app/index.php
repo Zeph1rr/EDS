@@ -2,8 +2,11 @@
 $title = 'Акаунт';
 include '/var/www/sad/src/core.php';
 $id = $user->id;
-
-includeTemplate('authorized.php', ['title' => $title, 'pos_id' => $user->pos_id]);
+if ($user->pos_id != 1) {
+  includeTemplate('authorized.php', ['title' => $title, 'pos_id' => $user->pos_id]);
+} else {
+  includeTemplate('admin.php', ['title' => $title, 'pos_id' => $user->pos_id]);
+}
 ?>
 
 
@@ -46,9 +49,11 @@ includeTemplate('authorized.php', ['title' => $title, 'pos_id' => $user->pos_id]
     <a class="w-100 btn btn-primary btn-lg my-1" href="/changepass/">
       Cменить Пароль
     </a>
+<?php if (!file_exists("/var/www/sad/keys/$id.pem") && $user->pos_id != 1) { ?>
     <a class="w-100 btn btn-primary btn-lg my-1" href="/getkeys/">
       Сгенерировать пару ключей
     </a>
+<?php } ?>
   </div>
 
 

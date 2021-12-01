@@ -19,11 +19,16 @@ if ($_SESSION) {
 	if (!validate_hash($_COOKIE['PHPSESSID'], $user->session_id) || !$pdo->getData("SELECT id FROM users WHERE id = " . $user->id)) {
 		header("refresh:0, url=/?needRelogin=1");
 	}
-	if ($_SERVER['REQUEST_URI'] == '/login/' || $_SERVER['REQUEST_URI'] == '/registration/') {
+	if ($_SERVER['REQUEST_URI'] == '/login/') {
 		header("refresh:1, url=/");
 		includeTemplate('messagePage.php', ['title' => 'Вы уже авторизированны']);
 		exit(200);
 	}
+	if (strpos($_SERVER['REQUEST_URI'], 'admin') !== false && $user->pos_id != 1) {
+		header("refresh:1, url=/");
+		includeTemplate('messagePage.php', ['title' => 'У вас нет доступа к данной странице']);
+		exit(200);
+	} 
 }
 
 if (!$_SESSION && $_SERVER['REQUEST_URI'] != '/login/' && $_SERVER['REQUEST_URI'] != '/registration/') {
