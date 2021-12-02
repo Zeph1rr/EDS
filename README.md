@@ -15,9 +15,9 @@
 
 ### Стек технологий
 
-- PHP: 7.3
+- PHP: 7.3.2
 - PostgreSQL: 13.3
-- Nginx: 1.20
+- Nginx: 1.20.1
 - Docker-Compose: 2.0 
 
 ### Ролевая модель
