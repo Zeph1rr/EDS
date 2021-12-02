@@ -72,7 +72,6 @@ includeTemplate('header.php', ['title' => $title]);
             <label for="password">Пароль</label>
         </div>
             <button class="w-100 btn btn-lg btn-primary btn-outline-light" type="submit">Войти</button>
-            <button onclick="document.location='/registration/'" class="w-100 btn btn-lg btn-primary btn-outline-light my-1" type="button">Зарегитстрироваться</button>
     </form>
 <?php 
 includeTemplate('footer.php');
