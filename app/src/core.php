@@ -31,7 +31,7 @@ if ($_SESSION) {
 	} 
 }
 
-if (!$_SESSION && $_SERVER['REQUEST_URI'] != '/login/' && $_SERVER['REQUEST_URI'] != '/registration/') {
+if (!$_SESSION && $_SERVER['REQUEST_URI'] != '/login/') {
 	header("refresh:1, url=/login/");
 	includeTemplate('messagePage.php', ['title' => 'Требуется авторизация']);
 	exit(200);

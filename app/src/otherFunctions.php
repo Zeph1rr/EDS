@@ -5,18 +5,6 @@ function includeTemplate($templatePath, $data = [])
     include '/var/www/sad/templates/' . ltrim($templatePath, '/');
 }
 
-function generatePassword()
-{
-    $length = 8;
-    $chars = 'qazxswedcvfrtgbnhyujmkiolp1234567890QAZXSWEDCVFRTGBNHYUJMKIOLP'; 
-    $size = strlen($chars) - 1; 
-    $password = ''; 
-    while($length--) {
-        $password .= $chars[random_int(0, $size)]; 
-    }
-    return $password;
-}
-
 function checkFormat(string $str): bool
 {
     return preg_match('/.doc|.pdf/', $str);
