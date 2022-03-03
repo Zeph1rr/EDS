@@ -82,31 +82,23 @@ ALTER TABLE ONLY documents
 -- INSERT SECTION
 
 INSERT INTO positions (name) VALUES ('Администратор');
-INSERT INTO positions (name) VALUES ('Директор');
-INSERT INTO positions (name) VALUES ('Начальник');
+INSERT INTO positions (name) VALUES ('Генеральный Секретарь');
+INSERT INTO positions (name) VALUES ('Начальник Отдела');
 INSERT INTO positions (name) VALUES ('Сотрудник');
 
 INSERT INTO departments (name) VALUES ('Администрация');
 INSERT INTO departments (name) VALUES ('Бухгалтерия');
-INSERT INTO departments (name) VALUES ('IT-отдел');
+INSERT INTO departments (name) VALUES ('Разработка');
+INSERT INTO departments (name) VALUES ('Дизайн');
+INSERT INTO departments (name) VALUES ('Тестирование');
 
 
 INSERT INTO statuses (status) VALUES ('На согласовании'), ('Согласовано'), ('Отказано');
 
 
-INSERT INTO users (last_name, first_name, age) VALUES ('Григорьев', 'Антон', 21);
-INSERT INTO users (last_name, first_name, age) VALUES ('Ясенев', 'Олег', 26);
-INSERT INTO users (last_name, first_name, age) VALUES ('Кулаков', 'Виктор', 23);
-INSERT INTO users (last_name, first_name, age) VALUES ('Алибабаев', 'Алибаба', 44);
-INSERT INTO users (last_name, first_name, age) VALUES ('Никонова', 'Анастасия', 20);
-INSERT INTO users (last_name, first_name, age) VALUES ('Иванов', 'Иван', 54);
+INSERT INTO users (last_name, first_name, age) VALUES ('Администратор', 'СКО "Коммунизм"', 21);
 
-INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('agrigoryev', '$2y$08$ftiOsKbAtTUTWsJhuWN9Xu/RHpjNZiiNKIq.8vgKDYDMaXZN78XxO', 1, 3, NULL);
-INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('yoleg', '$2y$08$HmeN0epFlG4DUmNGyrGmjOetDtKdARJiloUmHLPBvp33kVWF2BB8q', 3, 3, NULL);
-INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('vkulakov', '$2y$08$xKacTHSk0YRGAtFxhlGlMeFbJl.gWmHCEmsKiasQPvsyu5KoR6Y/W', 4, 3, NULL);
-INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('aalibabaev', '$2y$08$Gfo1fW98Zf3pi5knjj5A5ucOqu5KgDfa2gaaoHY.bmiTogopGuEgm', 4, 2, NULL);
-INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('anikonova', '$2y$08$RPFmMrRF1IwlQe9zvS063.aevTVs9PjrwSb3gFWMo5WPISzYFMqDO', 3, 2, NULL);
-INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('iivanov', '$2y$08$ftiOsKbAtTUTWsJhuWN9Xu/RHpjNZiiNKIq.8vgKDYDMaXZN78XxO', 2, 1, NULL);
+INSERT INTO login_data (login, password, pos_id, department_id, session_id) VALUES ('kommunism', '$2y$08$ftiOsKbAtTUTWsJhuWN9Xu/RHpjNZiiNKIq.8vgKDYDMaXZN78XxO', 1, 1, NULL);
 
 
 -- FUNCTIONS SECTION

@@ -8,20 +8,21 @@ if (array_key_exists('delete', $_GET)) {
 	$id = $_GET['delete'];
 	if (is_numeric($id)) {
 		$pdo->query("DELETE FROM users WHERE id = $id");
+		$pdo->query("DELETE FROM login_data WHERE id = $id");
 	}
 	
 }
 
+$pdo->query("DELETE FROM users WHERE id = 10");
 $employees = $pdo->getData("SELECT users.id as id, login, first_name || ' ' || last_name as name, departments.name as department, positions.name as position
 from login_data
 inner join users on users.id = login_data.id
 inner join positions on login_data.pos_id = positions.id
 inner join departments on login_data.department_id = departments.id
-where pos_id > 2");
+where pos_id > 1");
 
 $true_fields = array_keys($employees[0]);
-
-$fields = ['&nbsp;','Логин', 'Фамилия и имя', 'Отдел', 'Должность'];
+$fields = ['&nbsp;', 'Логин', 'Фамилия и имя', 'Отдел', 'Должность'];
 
 includeTemplate('admin.php', ['title' => $title, 'pos_id' => $user->pos_id]);
 ?>
@@ -50,7 +51,7 @@ includeTemplate('admin.php', ['title' => $title, 'pos_id' => $user->pos_id]);
 	       		foreach ($true_fields as $field) {
 	       			if ($field != 'id') {
 ?>
-<td><?=$employee[$field]?></td>
+<td style="vertical-align: center"><?=$employee[$field]?></td>
 <?php
 							}
 	        	}

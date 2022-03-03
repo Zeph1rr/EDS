@@ -5,7 +5,7 @@ includeTemplate('header.php', ['title' => $title]);
 <!-- Навбар -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="/">СЭД</a>
+    <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="/">СКО "Коммунизм"</a>
     <div class="collapse navbar-collapse" id="topNavBar"></div>
   </div>
 </nav>

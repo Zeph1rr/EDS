@@ -14,7 +14,7 @@ if (!empty($_POST)) {
         if (preg_match('/[A-Za-z0-9_]/', $password)) {
         $pdo->query("INSERT INTO users (last_name, first_name, age) VALUES ('$lastname', '$name', $age);");
         $pdo->query("INSERT INTO login_data (login, password, pos_id, department_id) VALUES ('$login', '$password', $position, $department_id);");
-        header("refresh:0, url =/admin/all_users");  
+        header("refresh:0, url=/admin/all_users");  
         } else {
             $error = 'Недопустимые символы в пароле';
         }
@@ -24,7 +24,8 @@ if (!empty($_POST)) {
 
 }
 
-$departments = $pdo->getData("SELECT * from departments where id > 1");
+$departments = $pdo->getData("SELECT * from departments");
+$positions = $pdo->getData("SELECT id, name FROM positions where id > 1");
 
 includeTemplate('admin.php', ['title' => $title]);
 ?>
@@ -61,8 +62,11 @@ includeTemplate('admin.php', ['title' => $title]);
             <label for="password">Пароль</label>
         </div>
         <div class="form-floating my-1">
-            <p>Начальник <input type="radio" id="position" name="position" value='3' required>&nbsp;
-            Сотрудник <input type="radio" id="position" name="position" value='4' required></p>
+            <p>
+            <?php foreach ($positions as $pos) { ?>
+            <?=$pos['name']?> <input type="radio" id="position" name="position" value="<?=$pos['id']?>" required>&nbsp;
+            <?php } ?>
+            </p>
         </div>
         <div class="form-floating my-1">
             <p>
