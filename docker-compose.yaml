@@ -55,7 +55,7 @@ services:
       - php
       - postgres
     ports:
-      - 8080:80
+      - 80:80
     volumes:
       - ./conf.d/sad:/etc/nginx/conf.d/default.conf
       - ./conf.d/nginx.conf:/etc/nginx/nginx.conf

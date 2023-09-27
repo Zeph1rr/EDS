@@ -1,5 +1,6 @@
-![logo](https://i.imgur.com/fR97Jyj.png)
-
+<p align="center">
+  ![logo](https://i.imgur.com/fR97Jyj.png)
+</p>
 # Система электронного документооборота
 
 ## Назначение проекта

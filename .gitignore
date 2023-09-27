@@ -1,2 +1,3 @@
 app/documents/*
 postgres/data/*
+app/report-*.csv
